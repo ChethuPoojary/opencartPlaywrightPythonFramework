@@ -2,6 +2,7 @@ import pytest
 import allure
 from pathlib import Path
 from playwright.sync_api import sync_playwright
+import os
 
 # ========================================================================
 # PYTEST + PLAYWRIGHT TEST CONFIGURATION FILE
@@ -82,6 +83,13 @@ def browser_context(request):
     browser_name = get_config_value(request.config, "browser")
     headed_flag = get_config_value(request.config, "headed")
     video_option = get_config_value(request.config, "video")
+
+    # Detect GitHub Actions
+    is_github = os.getenv("GITHUB_ACTIONS") == "true"
+
+    # Force headless on GitHub
+    if is_github:
+        headed_flag = False
 
     print(f"[OK] Starting browser: {browser_name}")
     print(f"[OK] Headless mode: {not headed_flag} (headed={headed_flag})")
