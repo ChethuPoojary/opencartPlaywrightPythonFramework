@@ -29,19 +29,19 @@ def test_end_to_end_flow(page):
 
     # Step 2: Logout after registration
     perform_logout(page)
-    print("✅ Logout completed successfully!")
+    print("Logout completed successfully!")
 
     # Step 3: Login with registered email
     perform_login(page, registered_email,registered_password)
-    print("✅ Login completed successfully!")
+    print("Login completed successfully!")
 
     # Step 4: Search product and add to cart
     add_product_to_cart(page)
-    print("✅ Product added to cart successfully!")
+    print("Product added to cart successfully!")
 
     # Step 5: Verify cart details
     verify_shopping_cart(page)
-    print("✅ Shopping cart verification completed!")
+    print("Shopping cart verification completed!")
 
 
 # -------------------------------------------------------------
@@ -155,7 +155,7 @@ def verify_shopping_cart(page):
     shopping_cart = product_page.click_view_cart()
     config = Config()
 
-    print("🛒 Navigated to Shopping Cart Page!")
+    print(" Navigated to Shopping Cart Page!")
 
 
     expect(shopping_cart.get_total_price()).to_have_text(config.total_price)
